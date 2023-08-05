@@ -50,23 +50,29 @@ db.user.belongsTo(db.membership, {
   as: "membership",
 });
 
-// db.category.hasMany(db.post, { as: "posts" });
-// db.post.belongsTo(db.category, {
-//   foreignKey: "categoryId",
-//   as: "category",
-// });
+db.post_label.hasMany(db.post, { as: "posts" });
+db.post.belongsTo(db.post_label, {
+  foreignKey: "postLabelId",
+  as: "post_label",
+});
 
-// db.user.hasMany(db.payment, { as: "payments" });
-// db.payment.belongsTo(db.user, {
-//   foreignKey: "paymentId",
-//   as: "payment",
-// });
+db.post_status.hasMany(db.post, { as: "posts" });
+db.post.belongsTo(db.post_status, {
+  foreignKey: "postStatusId",
+  as: "post_status",
+});
 
-// db.user.hasMany(db.post, { as: "posts" });
-// db.post.belongsTo(db.user, {
-//   foreignKey: "postId",
-//   as: "post",
-// });
+db.category.hasMany(db.post, { as: "posts" });
+db.post.belongsTo(db.category, {
+  foreignKey: "categoryId",
+  as: "category",
+});
+
+db.user.hasMany(db.payment, { as: "payments" });
+db.payment.belongsTo(db.user, {
+  foreignKey: "paymentId",
+  as: "payment",
+});
 
 db.ROLES = ["user", "admin", "moderator"];
 db.POST_STATUSES = ["draft", "published", "pending review"];
