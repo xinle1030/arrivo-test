@@ -2,6 +2,7 @@ const db = require("../../models");
 const config = require("../../config/auth.config");
 const User = db.user;
 const Role = db.role;
+const membershipController = require("../membership/membership.controller");
 
 const Op = db.Sequelize.Op;
 
@@ -49,7 +50,7 @@ exports.signin = (req, res) => {
     },
     include: ["membership"],
   })
-    .then((user) => {
+    .then(async (user) => {
       if (!user) {
         return res.status(404).send({ message: "User Not found." });
       }
@@ -73,19 +74,30 @@ exports.signin = (req, res) => {
       });
 
       var authorities = [];
-      user.getRoles().then((roles) => {
-        for (let i = 0; i < roles.length; i++) {
-          authorities.push("ROLE_" + roles[i].name.toUpperCase());
-        }
-        res.status(200).send({
+
+      try {
+        const roles = await user.getRoles();
+        const authorities = roles.map(
+          (role) => "ROLE_" + role.name.toUpperCase()
+        );
+
+        const membershipData = await membershipController.findMembershipById(
+          user.membershipId
+        );
+
+        const response = {
           id: user.id,
           username: user.username,
           email: user.email,
-          membership: user.membershipId,
+          membership: membershipData,
           roles: authorities,
           accessToken: token,
-        });
-      });
+        };
+
+        res.status(200).send(response);
+      } catch (err) {
+        res.status(500).send({ message: err.message });
+      }
     })
     .catch((err) => {
       res.status(500).send({ message: err.message });
