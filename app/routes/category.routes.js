@@ -3,6 +3,7 @@ const {
   updateCategory,
   viewCategory,
   deleteCategory,
+  viewCategoryById
 } = require("../controllers/category");
 
 module.exports = function (app) {
