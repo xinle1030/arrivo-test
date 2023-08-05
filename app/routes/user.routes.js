@@ -1,8 +1,12 @@
-const { authJwt } = require("../middleware");
-const controller = require("../controllers/user.controller");
+const {
+  createUser,
+  updateUser,
+  viewUser,
+  deleteUser,
+} = require("../controllers/user");
 
-module.exports = function(app) {
-  app.use(function(req, res, next) {
+module.exports = function (app) {
+  app.use(function (req, res, next) {
     res.header(
       "Access-Control-Allow-Headers",
       "x-access-token, Origin, Content-Type, Accept"
@@ -10,23 +14,18 @@ module.exports = function(app) {
     next();
   });
 
-  app.get("/api/test/all", controller.allAccess);
-
-  app.get(
-    "/api/test/user",
-    [authJwt.verifyToken],
-    controller.userBoard
+  app.post(
+    "/api/users",
+    createUser.createUser
   );
 
-  app.get(
-    "/api/test/mod",
-    [authJwt.verifyToken, authJwt.isModerator],
-    controller.moderatorBoard
-  );
+  app.get("/api/users/all", viewUser.getAllUsers);
 
-  app.get(
-    "/api/test/admin",
-    [authJwt.verifyToken, authJwt.isAdmin],
-    controller.adminBoard
-  );
+  app.get("/api/users/:id", viewUser.getUserById);
+
+  app.put("/api/users/:id", updateUser.updateUserById);
+
+  app.delete("/api/users/all", deleteUser.deleteAllUsers);
+
+  app.delete("/api/users/:id", deleteUser.deleteUserById);
 };
