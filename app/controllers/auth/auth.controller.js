@@ -2,7 +2,7 @@ const db = require("../../models");
 const config = require("../../config/auth.config");
 const User = db.user;
 const Role = db.role;
-const membershipController = require("../membership/membership.controller");
+const membershipController = require("../membership/viewMembershipById");
 
 const Op = db.Sequelize.Op;
 
@@ -89,6 +89,7 @@ exports.signin = (req, res) => {
           id: user.id,
           username: user.username,
           email: user.email,
+          fullName: user.fullName,
           membership: membershipData,
           roles: authorities,
           accessToken: token,
