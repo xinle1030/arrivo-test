@@ -17,12 +17,24 @@ exports.getAllCategories = async (req, res) => {
   }
 };
 
+// Get the category for a given category id
+exports.findCategoryById = async (id) => {
+  console.log(id)
+  return Category.findByPk(id)
+    .then((category) => {
+      const categoryData = category.get();
+      return categoryData;
+    })
+    .catch((err) => {
+      console.log(">> Error while finding category: ", err);
+    });
+};
 
 exports.getCategoryById = async (req, res) => {
   const categoryId = req.params.id;
 
   try {
-    const category = await Category.findByPk(categoryId);
+    const category = await exports.findCategoryById(categoryId);
 
     if (!category) {
       return res.status(404).json({ message: "Category not found" });
@@ -36,4 +48,3 @@ exports.getCategoryById = async (req, res) => {
     res.status(500).json({ message: "Error retrieving category data" });
   }
 };
-
