@@ -27,7 +27,6 @@ const seed = require("./app/config/seed");
 // db.sequelize.sync({force: true}).then(() => {
 //   console.log('Drop and Resync Database with { force: true }');
 //   seed.initial();
-//   // seed.createUser();
 // });
 
 // simple route
@@ -40,6 +39,7 @@ require('./app/routes/auth.routes')(app);
 require("./app/routes/user.routes")(app);
 require("./app/routes/category.routes")(app);
 require("./app/routes/post.routes")(app);
+require("./app/routes/payment.routes")(app);
 require('./app/routes/userContent.routes')(app);
 
 // set port, listen for requests
