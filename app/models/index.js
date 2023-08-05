@@ -70,8 +70,8 @@ db.post.belongsTo(db.category, {
 
 db.user.hasMany(db.payment, { as: "payments" });
 db.payment.belongsTo(db.user, {
-  foreignKey: "paymentId",
-  as: "payment",
+  foreignKey: "userId",
+  as: "user",
 });
 
 db.ROLES = ["user", "admin", "moderator"];
