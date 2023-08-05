@@ -43,7 +43,6 @@ exports.getAllUsers = async (req, res) => {
 
 // Get the user for a given user id
 exports.findUserById = async (id) => {
-  console.log(id);
   return User.findByPk(id)
     .then(async (user) => {
       const roles = await user.getRoles();
