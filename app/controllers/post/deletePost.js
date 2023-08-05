@@ -44,6 +44,9 @@ exports.deletePostById = async (req, res) => {
       category: categoryData,
       postStatus: postStatusData,
       postLabel: postLabelData,
+      postStatusId: undefined,
+      postLabelId: undefined,
+      categoryId: undefined,
     };
 
     await post.destroy(); // Delete the post from the database

@@ -36,6 +36,7 @@ exports.deleteUserById = async (req, res) => {
       ...user.get(),
       roles: authorities,
       membership: membershipData,
+      membershipId: undefined,
     };
 
     await user.destroy(); // Delete the user from the database
