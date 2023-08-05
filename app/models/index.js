@@ -36,10 +36,12 @@ db.role = require("../models/role.model.js")(sequelize, Sequelize);
 db.user = require("../models/user.model.js")(sequelize, Sequelize);
 
 db.role.belongsToMany(db.user, {
-  through: "user_roles"
+  through: "user_roles",
+  onDelete: "CASCADE", // Enable cascading delete
 });
 db.user.belongsToMany(db.role, {
-  through: "user_roles"
+  through: "user_roles",
+  onDelete: "CASCADE", // Enable cascading delete
 });
 
 db.membership.hasMany(db.user, { as: "users" });
