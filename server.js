@@ -24,11 +24,11 @@ const db = require("./app/models");
 const seed = require("./app/config/seed");
 // db.sequelize.sync();
 // force: true will drop the table if it already exists
-db.sequelize.sync({force: true}).then(() => {
-  console.log('Drop and Resync Database with { force: true }');
-  seed.initial();
-  seed.createUser();
-});
+// db.sequelize.sync({force: true}).then(() => {
+//   console.log('Drop and Resync Database with { force: true }');
+//   seed.initial();
+//   // seed.createUser();
+// });
 
 // simple route
 app.get("/", (req, res) => {
@@ -37,7 +37,8 @@ app.get("/", (req, res) => {
 
 // routes
 require('./app/routes/auth.routes')(app);
-require('./app/routes/user.routes')(app);
+require("./app/routes/user.routes")(app);
+require('./app/routes/userContent.routes')(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
