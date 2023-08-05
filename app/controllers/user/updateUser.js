@@ -53,6 +53,7 @@ exports.updateUserById = async (req, res) => {
       ...user.get(),
       roles: authorities,
       membership: membershipData,
+      membershipId: undefined,
     };
 
     res.status(200).json({ message: "User Updated.", user: updatedUser });

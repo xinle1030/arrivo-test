@@ -22,6 +22,7 @@ exports.getAllUsers = async (req, res) => {
             ...user.get(),
             roles: authorities,
             membership: membershipData,
+            membershipId: undefined,
           };
         } catch (err) {
           console.error(err);
@@ -40,34 +41,47 @@ exports.getAllUsers = async (req, res) => {
   }
 };
 
+// Get the user for a given user id
+exports.findUserById = async (id) => {
+  console.log(id);
+  return User.findByPk(id)
+    .then(async (user) => {
+      const roles = await user.getRoles();
+      const authorities = roles.map(
+        (role) => "ROLE_" + role.name.toUpperCase()
+      );
+
+      const membershipData = await membershipController.findMembershipById(
+        user.membershipId
+      );
+
+      const updatedUser = {
+        ...user.get(),
+        roles: authorities,
+        membership: membershipData,
+        membershipId: undefined,
+      };
+
+      return updatedUser;
+    })
+    .catch((err) => {
+      console.log(">> Error while finding user: ", err);
+    });
+};
 
 exports.getUserById = async (req, res) => {
   const userId = req.params.id;
 
   try {
-    const user = await User.findByPk(userId);
+    const user = await exports.findUserById(userId);
 
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
 
-    const roles = await user.getRoles();
-    const authorities = roles.map((role) => "ROLE_" + role.name.toUpperCase());
-
-    const membershipData = await membershipController.findMembershipById(
-      user.membershipId
-    );
-
-    const updatedUser = {
-      ...user.get(),
-      roles: authorities,
-      membership: membershipData,
-    };
-
-    res.status(200).json({ message: "User Retrieved.", user: updatedUser });
+    res.status(200).json({ message: "User Retrieved.", user: user });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Error retrieving user data" });
   }
 };
-
