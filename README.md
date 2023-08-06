@@ -19,16 +19,6 @@ node server.js
 
 ## API Reference
 
-### index.js
-
-```http
-  GET /
-```
-
-**Response:**
-
-"Welcome to management portal platform"
-
 ### auth.js
 
 ```http
@@ -71,6 +61,8 @@ node server.js
 ```http
   POST /api/categories
 ```
+
+- add admin access token to x-access-token under header
 
 | Request Body    | Type      |
 | :-----------    | :-------  |
@@ -129,6 +121,8 @@ node server.js
   PUT /api/categories/:categoryId
 ```
 
+- add admin access token to x-access-token under header
+
 | Request Body    | Type      |
 | :-----------    | :-------  |
 | `name`          | `String`  |
@@ -152,9 +146,13 @@ node server.js
   DELETE /api/categories
 ```
 
+- add admin access token to x-access-token under header
+
 ```http
   DELETE /api/categories/:categoryId
 ```
+
+- add admin access token to x-access-token under header
 
 **Response:**
 ```
@@ -173,6 +171,8 @@ node server.js
 ```http
   POST /api/payments
 ```
+
+- add access token to x-access-token under header
 
 | Request Body        | Type      |
 | :-----------        | :-------  |
@@ -283,6 +283,8 @@ node server.js
   POST /api/posts
 ```
 
+- add admin access token to x-access-token under header
+
 | Request Body      | Type      |
 | :-----------      | :-------  |
 | `title`           | `String`  |
@@ -305,8 +307,31 @@ node server.js
 ```
 
 ```http
+  GET /api/posts/all
+```
+
+- add admin access token to x-access-token under header
+
+**Response:**
+
+```
+[{
+  id: "int",
+  title: "string",
+  body: "string",
+  updatedAt: "string",
+  createdAt: "string",
+  category: "object",
+  postStatus: "object",
+  postLabel: "object"
+}]
+```
+
+```http
   GET /api/posts
 ```
+
+- add access token to x-access-token under header to display posts according to user access level
 
 **Response:**
 
@@ -327,6 +352,8 @@ node server.js
   GET /api/posts/:postId
 ```
 
+- add admin access token to x-access-token under header
+
 **Response:**
 
 ```
@@ -345,6 +372,8 @@ node server.js
 ```http
   PUT /api/posts/:postId
 ```
+
+- add admin access token to x-access-token under header
 
 | Request Body      | Type      |
 | :-----------      | :-------  |
@@ -373,9 +402,13 @@ node server.js
   DELETE /api/posts/
 ```
 
+- add admin access token to x-access-token under header
+
 ```http
   DELETE /api/posts/:postId
 ```
+
+- add admin access token to x-access-token under header
 
 **Response:**
 ```
