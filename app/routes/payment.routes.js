@@ -19,6 +19,8 @@ module.exports = function (app) {
     createPayment.createPayment
   );
 
+  app.post("/api/payments/transaction", createPayment.createPaymentTransaction);
+
   app.get("/api/payments/all", viewPayment.getAllPayments);
 
   app.get("/api/payments/:id", viewPayment.getPaymentById);
