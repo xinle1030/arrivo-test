@@ -1,0 +1,799 @@
+{
+	"info": {
+		"_postman_id": "0a95ce4b-a778-4971-abed-df896fc766b7",
+		"name": "Arrivo Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25237576"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Sign Up",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"premium-user1\",\n    \"email\": \"premium-user1@gmail.com\",\n    \"password\": \"12345678\",\n    \"membershipId\": 2,\n    \"fullName\": \"premium-user1\",\n    \"roles\": [\"user\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/api/auth/signup",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sign In",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "// {\n//     \"username\": \"admin1\",\n//     \"password\": \"12345678\"\n// }\n\n{\n    \"username\": \"normal-user1\",\n    \"password\": \"12345678\"\n}\n\n// {\n//     \"username\": \"premium-user1\",\n//     \"password\": \"12345678\"\n// }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/api/auth/signin",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"admin1\",\n    \"email\": \"admin1@gmail.com\",\n    \"password\": \"12345678\",\n    \"membershipId\": 2,\n    \"fullName\": \"admin1\",\n    \"roles\": [\"user\", \"admin\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/api/users",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/api/users/all",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/api/users/1",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User by Id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"fullName\": \"new-test2-new\",\n    \"membershipId\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/api/users/2",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete All Users",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/api/users/all",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User by Id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/api/users/7",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "Create Categories",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjkxMzM2NDY0LCJleHAiOjE2OTE0MjI4NjR9.uQ_6TdKatnQrYgckDjAB8T_5qvwhLKiZjhVNsYe6sWQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Cat3\",\n    \"description\": \"This is Category 3\",\n    \"activated\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/api/categories",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/api/categories/all",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"categories",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Category by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/api/categories/1",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"categories",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Category by Id",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjkxMzM2NTAwLCJleHAiOjE2OTE0MjI5MDB9.LIO-FxVBjaWd65UUenTCKdymQG2HeLQ-fPRjJ_vu07Y",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"New-Cat1\",\n    \"activated\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/api/categories/1",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"categories",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete All Categories",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjkxMzIyNjEwLCJleHAiOjE2OTE0MDkwMTB9.pgbhBzYDPLHiNFAHULAnci_TXaPrsNNTzwKOMfrvj8w",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/api/categories/all",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"categories",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Category by Id",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjkxMzIyNjEwLCJleHAiOjE2OTE0MDkwMTB9.pgbhBzYDPLHiNFAHULAnci_TXaPrsNNTzwKOMfrvj8w",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/api/categories/2",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"categories",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Post",
+			"item": [
+				{
+					"name": "Create Post",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjkxMzM2NTAwLCJleHAiOjE2OTE0MjI5MDB9.LIO-FxVBjaWd65UUenTCKdymQG2HeLQ-fPRjJ_vu07Y",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"post 4\",\n    \"body\": \"This is post 4\",\n    \"categoryId\": 2,\n    \"postStatusId\": 2,\n    \"postLabelId\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/api/posts",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Posts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjkxMzM2NTAwLCJleHAiOjE2OTE0MjI5MDB9.LIO-FxVBjaWd65UUenTCKdymQG2HeLQ-fPRjJ_vu07Y",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/api/posts/all",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"posts",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Post by Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjkxMzIyNjEwLCJleHAiOjE2OTE0MDkwMTB9.pgbhBzYDPLHiNFAHULAnci_TXaPrsNNTzwKOMfrvj8w",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/api/posts/1",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"posts",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Post by Id",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjkxMzIyNjEwLCJleHAiOjE2OTE0MDkwMTB9.pgbhBzYDPLHiNFAHULAnci_TXaPrsNNTzwKOMfrvj8w",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"categoryId\": 2,\n    \"postStatusId\": 2,\n    \"postLabelId\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/api/posts/4",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"posts",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete All Post",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjkxMzIyNjEwLCJleHAiOjE2OTE0MDkwMTB9.pgbhBzYDPLHiNFAHULAnci_TXaPrsNNTzwKOMfrvj8w",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/api/posts/all",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"posts",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Post by Id",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjkxMzIyNjEwLCJleHAiOjE2OTE0MDkwMTB9.pgbhBzYDPLHiNFAHULAnci_TXaPrsNNTzwKOMfrvj8w",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/api/posts/1",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"posts",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Post by Post Label Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjkxMzM2NjM0LCJleHAiOjE2OTE0MjMwMzR9.KNd5eBoM-SXW_jt5HAigmesD2MO0owtF_Jysgwn-Wmw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/api/posts",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Payment",
+			"item": [
+				{
+					"name": "Create Payment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjkxMzM2NjgwLCJleHAiOjE2OTE0MjMwODB9.0krgSPjIOrqDKEsYVexcxhiVg7VQrFiazCcJJwE72W4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"amount\": 500.00\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/api/payments",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"payments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Payments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/api/payments/all",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"payments",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Payment by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/api/payments/123",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"payments",
+								"123"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Payment by Id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"amount\": 1000.00\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/api/payments/456",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"payments",
+								"456"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete All Payments",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/api/payments/all",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"payments",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Payment by Id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/api/payments/789",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"payments",
+								"789"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Test All Content",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/api/test/all",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"api",
+						"test",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test User Content",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjkxMTMwMzE0LCJleHAiOjE2OTEyMTY3MTR9.Z5d8PA8OT_3YuZ6ZF61rkNEg4VkvHs-QFhu4YilhTJU",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{server}}/api/test/user",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"api",
+						"test",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Mod Content",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjkxMTMwMzE0LCJleHAiOjE2OTEyMTY3MTR9.Z5d8PA8OT_3YuZ6ZF61rkNEg4VkvHs-QFhu4YilhTJU",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{server}}/api/test/mod",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"api",
+						"test",
+						"mod"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Admin Content",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjkxMTMwNDk1LCJleHAiOjE2OTEyMTY4OTV9.oRErb5DynBBzjifgb0wt_hIoCtD6NK2YxU62B-s_Ymk",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{server}}/api/test/admin",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"api",
+						"test",
+						"admin"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
