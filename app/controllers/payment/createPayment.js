@@ -6,7 +6,9 @@ const PREMIUM_MEMBERSHIP = 2;
 const fetch = require("node-fetch");
 
 exports.createPayment = async (req, res) => {
-  const { amount, userId } = req.body;
+
+  const userId = req.userId;
+  const { amount } = req.body;
 
   if (!amount || !userId) {
     return res.status(400).json({ message: "Missing required fields" });
@@ -55,8 +57,8 @@ exports.createPayment = async (req, res) => {
 };
 
 exports.createPaymentTransaction = async (req, res) => {
+  const userId = req.userId;
   const billplz = req.query.billplz;
-  const userId = req.query.userId;
 
   const user = await User.findByPk(userId);
 

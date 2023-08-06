@@ -14,12 +14,13 @@ module.exports = function (app) {
     next();
   });
 
-  app.post(
-    "/api/payments",
-    createPayment.createPayment
-  );
+  app.post("/api/payments", [authJwt.verifyToken], createPayment.createPayment);
 
-  app.post("/api/payments/transaction", createPayment.createPaymentTransaction);
+  app.post(
+    "/api/payments/transaction",
+    [authJwt.verifyToken],
+    createPayment.createPaymentTransaction
+  );
 
   app.get("/api/payments/all", viewPayment.getAllPayments);
 
