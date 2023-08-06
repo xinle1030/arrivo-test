@@ -1,3 +1,4 @@
+const { authJwt } = require("../middleware");
 const {
   createPost,
   updatePost,
@@ -14,9 +15,12 @@ module.exports = function (app) {
     next();
   });
 
-  app.post(
+  app.post("/api/posts", createPost.createPost);
+
+  app.get(
     "/api/posts",
-    createPost.createPost
+    [authJwt.verifyToken, authJwt.checkAccess],
+    viewPost.getAllPostsByPostLabelId
   );
 
   app.get("/api/posts/all", viewPost.getAllPosts);
