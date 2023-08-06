@@ -1,9 +1,10 @@
+const { authJwt } = require("../middleware");
 const {
   createCategory,
   updateCategory,
   viewCategory,
   deleteCategory,
-  viewCategoryById
+  viewCategoryById,
 } = require("../controllers/category");
 
 module.exports = function (app) {
@@ -15,18 +16,27 @@ module.exports = function (app) {
     next();
   });
 
-  app.post(
-    "/api/categories",
-    createCategory.createCategory
-  );
+  app.post("/api/categories", [authJwt.verifyToken, authJwt.isAdmin], createCategory.createCategory);
 
   app.get("/api/categories/all", viewCategory.getAllCategories);
 
   app.get("/api/categories/:id", viewCategory.getCategoryById);
 
-  app.put("/api/categories/:id", updateCategory.updateCategoryById);
+  app.put(
+    "/api/categories/:id",
+    [authJwt.verifyToken, authJwt.isAdmin],
+    updateCategory.updateCategoryById
+  );
 
-  app.delete("/api/categories/all", deleteCategory.deleteAllCategories);
+  app.delete(
+    "/api/categories/all",
+    [authJwt.verifyToken, authJwt.isAdmin],
+    deleteCategory.deleteAllCategories
+  );
 
-  app.delete("/api/categories/:id", deleteCategory.deleteCategoryById);
+  app.delete(
+    "/api/categories/:id",
+    [authJwt.verifyToken, authJwt.isAdmin],
+    deleteCategory.deleteCategoryById
+  );
 };

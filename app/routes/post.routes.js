@@ -15,7 +15,7 @@ module.exports = function (app) {
     next();
   });
 
-  app.post("/api/posts", createPost.createPost);
+  app.post("/api/posts", [authJwt.verifyToken, authJwt.isAdmin], createPost.createPost);
 
   app.get(
     "/api/posts",
@@ -23,13 +23,33 @@ module.exports = function (app) {
     viewPost.getAllPostsByPostLabelId
   );
 
-  app.get("/api/posts/all", viewPost.getAllPosts);
+  app.get(
+    "/api/posts/all",
+    [authJwt.verifyToken, authJwt.isAdmin],
+    viewPost.getAllPosts
+  );
 
-  app.get("/api/posts/:id", viewPost.getPostById);
+  app.get(
+    "/api/posts/:id",
+    [authJwt.verifyToken, authJwt.isAdmin],
+    viewPost.getPostById
+  );
 
-  app.put("/api/posts/:id", updatePost.updatePostById);
+  app.put(
+    "/api/posts/:id",
+    [authJwt.verifyToken, authJwt.isAdmin],
+    updatePost.updatePostById
+  );
 
-  app.delete("/api/posts/all", deletePost.deleteAllPosts);
+  app.delete(
+    "/api/posts/all",
+    [authJwt.verifyToken, authJwt.isAdmin],
+    deletePost.deleteAllPosts
+  );
 
-  app.delete("/api/posts/:id", deletePost.deletePostById);
+  app.delete(
+    "/api/posts/:id",
+    [authJwt.verifyToken, authJwt.isAdmin],
+    deletePost.deletePostById
+  );
 };
