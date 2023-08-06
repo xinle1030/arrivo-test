@@ -1,3 +1,4 @@
+const { authJwt } = require("../middleware");
 const {
   createPayment,
   updatePayment,
