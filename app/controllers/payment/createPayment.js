@@ -49,7 +49,7 @@ exports.createPayment = async (req, res) => {
 
     const result = await bill.json();
 
-    res.send(result.url);
+    res.send(result);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Error creating new payment" });
