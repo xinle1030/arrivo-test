@@ -13,6 +13,9 @@ module.exports = (sequelize, Sequelize) => {
     status: {
       type: Sequelize.STRING,
     },
+    completedAt: {
+      type: Sequelize.STRING,
+    },
   });
 
   return Payment;
