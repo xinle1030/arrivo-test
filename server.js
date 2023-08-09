@@ -31,7 +31,7 @@ const seed = require("./app/config/seed");
 
 // simple route
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to bezkoder application." });
+  res.json({ message: "Welcome to user and post management application." });
 });
 
 // routes
